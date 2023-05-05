@@ -22,13 +22,11 @@ namespace AppAvtomat
         private void createTableButton_Click(object sender, EventArgs e)
         {
             int rows = int.Parse(rowsTextBox.Text);
-            int cols = int.Parse(colsTextBox.Text);
+            int cols = rows;
 
             table = new TableLayoutPanel();
             rowsTextBox.Visible = false;
-            colsTextBox.Visible = false;
             labeltest1.Visible = false;
-            labeltest2.Visible = false;
             createTableButton.Visible = false;
             table.RowCount = rows + 1; // учитываем строку заголовков
             table.ColumnCount = cols + 3; // учитываем столбец заголовков
@@ -60,11 +58,18 @@ namespace AppAvtomat
             label2.TextAlign = ContentAlignment.MiddleCenter;
             table.Controls.Add(label2, cols + 2, 0);
             table.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F)); // задаем высоту строки заголовков
-            for (int i = 1; i <= rows; i++) // добавляем заголовки строк
+            for (int i = 1; i <= rows + 1; i++) // добавляем заголовки строк
             {
                 table.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
                 Label label = new Label();
-                label.Text = "L" + i.ToString();
+                if(i <= rows)
+                {
+                    label.Text = "L" + i.ToString();
+                }
+                else
+                {
+                    label.Text = "Сумма";
+                }
                 label.Dock = DockStyle.Fill;
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 table.Controls.Add(label, 0, i);
@@ -79,11 +84,10 @@ namespace AppAvtomat
                     table.Controls.Add(textBox, j, i);
                 }
             }
+        
             table.AutoScroll = true;
             table.Dock = DockStyle.Fill;
             this.Controls.Add(table);
-
-
 
             calculateButton = new Button();
             calculateButton.Text = "Посчитать";
