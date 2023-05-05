@@ -14,6 +14,7 @@ namespace AppAvtomat
     {
         private TableLayoutPanel table;
         private Button calculateButton;
+        private int rowss;
         public Form1()
         {
             InitializeComponent();
@@ -29,6 +30,7 @@ namespace AppAvtomat
             labeltest1.Visible = false;
             createTableButton.Visible = false;
             table.RowCount = rows + 1; // учитываем строку заголовков
+            rowss = rows;
             table.ColumnCount = cols + 3; // учитываем столбец заголовков
             table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F)); // задаем ширину столбцов
             Label labelk = new Label();
@@ -100,9 +102,10 @@ namespace AppAvtomat
         private void CalculateRowsSum(object sender, EventArgs e)
         {
             calculateButton.Enabled = false;
+            float sumfunish = 0;
             for (int i = 1; i < table.RowCount; i++)
             {
-                double rowSum = 0;
+                float rowComp = 1.0f;
                 // Проходим по каждому TextBox в строке
                 foreach (Control control in table.Controls)
                 {
@@ -111,18 +114,26 @@ namespace AppAvtomat
                         if (double.TryParse(textBox.Text, out double value))
                         {
                             // Если удалось успешно распарсить число из TextBox, то добавляем его к сумме строки
-                            rowSum += value;
+                            rowComp *= (float)value;
                         }
                     }
                 }
+                float delit = 1.0f / rowss;
+                float finish = (float)Math.Round((float)Math.Pow(rowComp, delit), 2);
+                sumfunish += (float)finish;
                 table.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-                Label label = new Label();
-                label.Text = rowSum.ToString();
-                label.Dock = DockStyle.Fill;
-                label.TextAlign = ContentAlignment.MiddleCenter;
-                table.Controls.Add(label, table.ColumnCount - 2, i);
+                Label labelfi = new Label();
+                labelfi.Text = finish.ToString();
+                labelfi.Dock = DockStyle.Fill;
+                labelfi.TextAlign = ContentAlignment.MiddleCenter;
+                table.Controls.Add(labelfi, table.ColumnCount - 2, i);
                 // Выводим сумму строки в консоль (вы можете сделать что-то другое с этой информацией)
             }
+            Label label = new Label();
+            label.Text = sumfunish.ToString();
+            label.Dock = DockStyle.Fill;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            table.Controls.Add(label, table.ColumnCount - 2, table.ColumnCount);
         }
     }
 }
