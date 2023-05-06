@@ -35,7 +35,7 @@
             // 
             // rowsTextBox
             // 
-            this.rowsTextBox.Location = new System.Drawing.Point(45, 53);
+            this.rowsTextBox.Location = new System.Drawing.Point(35, 53);
             this.rowsTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rowsTextBox.Name = "rowsTextBox";
             this.rowsTextBox.Size = new System.Drawing.Size(117, 20);
@@ -43,7 +43,7 @@
             // 
             // createTableButton
             // 
-            this.createTableButton.Location = new System.Drawing.Point(69, 77);
+            this.createTableButton.Location = new System.Drawing.Point(60, 77);
             this.createTableButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.createTableButton.Name = "createTableButton";
             this.createTableButton.Size = new System.Drawing.Size(68, 19);
@@ -55,7 +55,7 @@
             // labeltest1
             // 
             this.labeltest1.AutoSize = true;
-            this.labeltest1.Location = new System.Drawing.Point(53, 38);
+            this.labeltest1.Location = new System.Drawing.Point(38, 38);
             this.labeltest1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labeltest1.Name = "labeltest1";
             this.labeltest1.Size = new System.Drawing.Size(99, 13);

@@ -18,6 +18,15 @@ namespace AppAvtomat
         public Form1()
         {
             InitializeComponent();
+
+            int screenWidth = Screen.PrimaryScreen.Bounds.Width;
+            int screenHeight = Screen.PrimaryScreen.Bounds.Height;
+            int formWidth = this.Width;
+            int formHeight = this.Height;
+            int x = (screenWidth - formWidth) / 2;
+            int y = (screenHeight - formHeight) / 2;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(x, y);
         }
 
         private void createTableButton_Click(object sender, EventArgs e)
